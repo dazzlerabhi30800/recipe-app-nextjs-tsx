@@ -6,7 +6,8 @@ export default async function Home() {
   // console.log(recipes);
   return (
     <main className={styles.main}>
-      <h1>Recipe App</h1>
+      <h1 className={styles.heading}>Recipe App</h1>
+      <p>Hello this is a paragraph</p>
     </main>
   )
 }
