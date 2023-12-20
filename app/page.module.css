@@ -1,15 +1,38 @@
+/* Navbar Styling */
+.nav {
+  font-family: var(--font-inter);
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  font-family: var(--font-montserrat);
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s linear;
+}
+
+/* Main Component Styling */
 .main {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--navbar-height));
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background: linear-gradient(to left, #232323, #232222);
   color: #fff;
   align-items: center;
-}
-
-
-.heading {
-  /* font-family: var(--font-montserrat); */
-  font-family: var(--font-inter);
 }

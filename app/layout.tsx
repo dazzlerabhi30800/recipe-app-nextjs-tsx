@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { inter, montserrat } from './fonts'
+import Navbar from '@/Components/Navbar'
+import { wrapper } from '@/Store/Slice'
 
 
 export const metadata: Metadata = {
@@ -8,14 +10,19 @@ export const metadata: Metadata = {
   description: 'Recipe App Search your favorite recipes online using this app.',
 }
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable}`}>{children}</body>
+      <body className={`${inter.variable} ${montserrat.variable}`}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
+
+export default wrapper.withRedux(RootLayout);

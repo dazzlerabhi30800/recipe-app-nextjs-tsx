@@ -1,4 +1,6 @@
-
+:root {
+  --navbar-height: 60px;
+}
 
 * {
   margin: 0;
@@ -6,4 +8,14 @@
   box-sizing: border-box;
 }
 
+body {
+  background: linear-gradient(to left, #232323, #232222);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
 
+@media (hover: hover) {
+  a:hover {
+    color: #ccc;
+  }
+}
