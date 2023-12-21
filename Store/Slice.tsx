@@ -3,8 +3,10 @@ import {
   configureStore,
   createSlice,
   Action,
+  PayloadAction,
+  combineReducers,
 } from "@reduxjs/toolkit";
-import { HYDRATE, createWrapper } from "next-redux-wrapper";
+import { HYDRATE, MakeStore, createWrapper } from "next-redux-wrapper";
 
 export interface AuthState {
   authState: boolean;
@@ -22,27 +24,29 @@ export const authSlice = createSlice({
       state.authState = !state.authState;
     },
   },
-
   // Special reducers for hydrating the state. Special case for next-redux-wrapper
   extraReducers: (builder) => {
-    builder.addDefaultCase((state, action) => {
-      return {
-        ...state,
-        // ...action.payload.authState,
-      }
-    })
+    builder.addCase(HYDRATE, (state, action) => {
+      return { ...state, ...action};
+    });
   },
 });
 
 export const { setAuthState } = authSlice.actions;
 
-const makeStore = () =>
-  configureStore({
+
+
+
+
+
+const makeStore  = () => {
+  return configureStore({
     reducer: {
       [authSlice.name]: authSlice.reducer,
     },
     devTools: true,
   });
+};
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore["getState"]>;
