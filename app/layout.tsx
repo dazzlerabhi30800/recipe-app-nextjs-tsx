@@ -8,11 +8,10 @@ import { useRouter } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Recipe App",
-  description: "Recipe App Search your favorite recipes online using this app.",
+  description: "Recipe App Search your favorite recipes online using this app on any OS.",
 };
 
 function RootLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
   return (
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable}`}>
