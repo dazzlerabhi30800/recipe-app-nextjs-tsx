@@ -5,7 +5,6 @@ import Navbar from "@/Components/Navbar";
 import {ReduxProvider} from '@/Store/Provider';
 // import { wrapper } from "@/Store/Slice";
 
-import { useRouter } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Recipe App",
@@ -16,7 +15,6 @@ export const metadata: Metadata = {
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // const router = useRouter();
   return (
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable}`}>
