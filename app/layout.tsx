@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { inter, montserrat } from "./fonts";
 import Navbar from "@/Components/Navbar";
-import {ReduxProvider} from '@/Store/Provider';
+import { ReduxProvider } from '@/Store/Provider';
 // import { wrapper } from "@/Store/Slice";
 
 

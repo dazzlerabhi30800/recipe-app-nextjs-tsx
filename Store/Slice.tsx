@@ -1,39 +1,57 @@
 import {
-  ThunkAction,
   configureStore,
+  createAsyncThunk,
   createSlice,
-  Action,
-  PayloadAction,
-  combineReducers,
 } from "@reduxjs/toolkit";
-import { HYDRATE, MakeStore, createWrapper } from "next-redux-wrapper";
+import { HYDRATE } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
+
+
+// fetch recipe function
+export const fetchRecipes = createAsyncThunk(
+  "content/fetchRecipes",
+  async () => {
+    const data = await fetch("https://api.edamam.com/api/recipes/v2?q=meat&app_key=ef5add9c1af6afdbd7191fd1ff8bbd6d&app_id=e4ba6739&type=public");
+    const response = await data.json();
+    return response;
+  }
+)
 export interface AuthState {
-  authState: boolean;
+  loading: boolean;
+  recipes: Array<any>
 }
 
+
 const initialState = {
-  authState: false,
+  loading: false,
+  recipes: []
 } as AuthState;
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setAuthState(state) {
-      state.authState = !state.authState;
+    setLoadingState(state) {
+      state.loading = !state.loading;
     },
   },
   // Special reducers for hydrating the state. Special case for next-redux-wrapper
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state, action) => {
-      return { ...state, ...action };
-    });
+    // builder.addCase(HYDRATE, (state, action) => {
+    //   return { ...state, ...action };
+    // });
+    builder.addCase(fetchRecipes.pending, (state) => {
+      state.loading = true
+    })
+    builder.addCase(fetchRecipes.fulfilled, (state, action) => {
+      state.recipes.push(action.payload);
+      state.loading = false;
+    })
   },
 });
 
-export const { setAuthState } = authSlice.actions;
+export const { setLoadingState } = authSlice.actions;
 
 
 
