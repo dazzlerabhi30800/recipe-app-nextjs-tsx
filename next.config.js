@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    images: {
+        domains: ["edamam-product-images.s3.amazonaws.com"],
+    },
+    experimental: { esmExternals: true }
+}
 
 module.exports = nextConfig

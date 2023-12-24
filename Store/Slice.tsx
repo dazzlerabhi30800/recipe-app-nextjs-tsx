@@ -38,9 +38,9 @@ export const authSlice = createSlice({
   },
   // Special reducers for hydrating the state. Special case for next-redux-wrapper
   extraReducers: (builder) => {
-    // builder.addCase(HYDRATE, (state, action) => {
-    //   return { ...state, ...action };
-    // });
+    builder.addCase(HYDRATE, (state, action) => {
+      return { ...state, ...action };
+    });
     builder.addCase(fetchRecipes.pending, (state) => {
       state.loading = true
     })
