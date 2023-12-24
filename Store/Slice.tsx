@@ -6,26 +6,28 @@ import {
 import { HYDRATE } from "next-redux-wrapper";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
-
-
 // fetch recipe function
+const appId = process.env.NEXT_PUBLIC_APP_ID?.toString();
+const appKey = process.env.NEXT_PUBLIC_APP_KEY?.toString();
+
 export const fetchRecipes = createAsyncThunk(
   "content/fetchRecipes",
   async () => {
-    const data = await fetch("https://api.edamam.com/api/recipes/v2?q=meat&app_key=ef5add9c1af6afdbd7191fd1ff8bbd6d&app_id=e4ba6739&type=public");
+    const data = await fetch(
+      `https://api.edamam.com/api/recipes/v2?q=meat&app_key=${appKey}&app_id=${appId}&type=public`
+    );
     const response = await data.json();
     return response;
   }
-)
+);
 export interface AuthState {
   loading: boolean;
-  recipes: Array<any>
+  recipes: Array<any>;
 }
-
 
 const initialState = {
   loading: false,
-  recipes: []
+  recipes: [],
 } as AuthState;
 
 export const authSlice = createSlice({
@@ -38,22 +40,20 @@ export const authSlice = createSlice({
   },
   // Special reducers for hydrating the state. Special case for next-redux-wrapper
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state, action) => {
-      return { ...state, ...action };
-    });
+    // builder.addCase(HYDRATE, (state, action) => {
+    //   return { ...state, ...action };
+    // });
     builder.addCase(fetchRecipes.pending, (state) => {
-      state.loading = true
-    })
+      state.loading = true;
+    });
     builder.addCase(fetchRecipes.fulfilled, (state, action) => {
       state.recipes.push(action.payload);
       state.loading = false;
-    })
+    });
   },
 });
 
 export const { setLoadingState } = authSlice.actions;
-
-
 
 // const makeStore = () => {
 //   return configureStore({
@@ -67,9 +67,8 @@ export const { setLoadingState } = authSlice.actions;
 export const store = configureStore({
   reducer: {
     [authSlice.name]: authSlice.reducer,
-  }
-})
-
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

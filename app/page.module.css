@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 
@@ -37,12 +37,14 @@
   gap: 1rem;
   margin-top: 1.5rem;
   color: #fff;
+  text-align: center;
   align-items: center;
 }
 
 
 .heading {
   font-family: var(--font-montserrat);
+  font-size: clamp(1.5rem, 2vw + 8px, 2.8rem);
 }
 
 .button {
