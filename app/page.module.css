@@ -12,7 +12,7 @@
 .logo {
   font-family: var(--font-montserrat);
   text-transform: uppercase;
-  color: #fff;
+  color: #8eef5a;
 }
 
 .nav ul {
@@ -34,6 +34,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
   color: #fff;
   align-items: center;
 }
@@ -56,4 +58,73 @@
 
 
 /* Recipe Wrapper Styling */
-.recipeWrapper {}
+.recipeWrapper {
+  --column-gap: 2rem;
+  --columns: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--column-gap);
+  width: 90%;
+  margin: 1rem auto;
+  font-family: var(--font-inter);
+  flex-wrap: wrap;
+  padding: 1rem 0;
+}
+
+.recipeComp {
+  display: flex;
+  text-align: center;
+  min-width: 300px;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: radial-gradient(circle, #38473f , #191f1d);
+}
+
+.recipeComp h2 {
+  font-size: clamp(1.3rem, 1.5vw, 1.6rem);
+}
+
+.recipeComp p {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  width: 300px;
+}
+
+.calories {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+
+@media Screen and (min-width: 600px) {
+  .recipeWrapper {
+    --columns: 2;
+  }
+}
+@media Screen and (min-width: 1000px) {
+  .recipeWrapper {
+    --columns: 3;
+  }
+}
+@media Screen and (min-width: 1300px) {
+  .recipeWrapper {
+    --columns: 4;
+    --column-gap: 2.5rem;
+  }
+}
+
+@media (hover:hover) {
+  .recipeComp {
+    cursor: pointer;
+    transition: 0.3s linear;
+  }
+  .recipeComp:hover {
+    position: relative;
+    scale: 1.1;
+    z-index: 444;
+  }
+}
