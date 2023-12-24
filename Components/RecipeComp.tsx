@@ -5,7 +5,6 @@ export default function RecipeComp({ item }: any) {
   const {
     recipe: { images, label, summary, calories },
   } = item;
-  //   console.log(item);
   return (
     <div className={styles.recipeComp}>
       <Image
