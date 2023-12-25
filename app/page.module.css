@@ -8,7 +8,6 @@
   padding: 1.5rem;
 }
 
-
 .logo {
   font-family: var(--font-montserrat);
   text-transform: uppercase;
@@ -41,7 +40,6 @@
   align-items: center;
 }
 
-
 .heading {
   font-family: var(--font-montserrat);
   font-size: clamp(1.5rem, 2vw + 8px, 2.8rem);
@@ -57,7 +55,6 @@
   border-radius: 5px;
   border: 1px solid limegreen;
 }
-
 
 /* Recipe Wrapper Styling */
 .recipeWrapper {
@@ -78,13 +75,12 @@
   text-align: center;
   min-width: 300px;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
   align-items: center;
   border-radius: 5px;
   gap: 1.5rem;
-  padding: 1rem;
-  background: radial-gradient(circle, #2a352b , #000000);
-
+  padding: 1rem 1rem 1.5rem;
+  background: radial-gradient(circle, #2a352b, #000000);
 }
 
 .recipeComp h2 {
@@ -96,13 +92,28 @@
   width: 300px;
 }
 
+.labels {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+.labels span {
+  font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+  border-bottom: 1px dotted white;
+}
+
 .calories {
   display: flex;
   align-items: center;
   gap: 10px;
   justify-content: center;
+  background: #8ce749;
+  width: fit-content !important;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: #000;
 }
-
 
 @media Screen and (min-width: 600px) {
   .recipeWrapper {
@@ -121,7 +132,7 @@
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .recipeComp {
     cursor: pointer;
     transition: 0.3s linear;
