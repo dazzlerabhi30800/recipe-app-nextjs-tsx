@@ -14,18 +14,37 @@
   color: #8eef5a;
 }
 
-.nav ul {
+.formContainer {
   display: flex;
   align-items: center;
   gap: 1rem;
   list-style: none;
 }
-
-.nav ul li a {
-  text-decoration: none;
+.formContainer input {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
+  flex: 1;
+  border: 1px solid #8eef5a;
+  background: none;
   color: #fff;
-  transition: 0.3s linear;
 }
+.formContainer input::placeholder {
+  color: #ccc;
+}
+.formContainer input:focus {
+  outline: none;
+  border-color: #fff;
+}
+
+.searchBtn {
+  border: none;
+  outline: none;
+  background: none;
+  color: #8eef5a;
+}
+
+
 
 /* Main Component Styling */
 .main {
