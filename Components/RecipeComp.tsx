@@ -9,7 +9,8 @@ export default function RecipeComp({ item }: any) {
     <div className={styles.recipeComp}>
       <Image
         style={{ width: "100%", height: "200px", objectFit: "cover" }}
-        priority={true}
+        quality={100}
+        loading="lazy"
         width={100}
         height={100}
         src={images?.LARGE?.url || images?.REGULAR?.url}

@@ -55,15 +55,6 @@ export const authSlice = createSlice({
 
 export const { setLoadingState } = authSlice.actions;
 
-// const makeStore = () => {
-//   return configureStore({
-//     reducer: {
-//       [authSlice.name]: authSlice.reducer,
-//     },
-//     devTools: true,
-//   });
-// };
-
 export const store = configureStore({
   reducer: {
     [authSlice.name]: authSlice.reducer,
@@ -74,14 +65,3 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-
-// export type AppStore = ReturnType<typeof makeStore>;
-// export type AppState = ReturnType<AppStore["getState"]>;
-// export type AppThunk<ReturnType = void> = ThunkAction<
-//   ReturnType,
-//   AppState,
-//   unknown,
-//   Action
-// >;
-//
-// export const wrapper = createWrapper<AppStore>(makeStore);
