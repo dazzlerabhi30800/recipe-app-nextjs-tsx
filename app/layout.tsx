@@ -12,8 +12,6 @@ export const metadata: Metadata = {
     "Recipe App Search your favorite recipes online using this app on any OS.",
 };
 
-
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">

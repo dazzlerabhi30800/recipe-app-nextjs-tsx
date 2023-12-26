@@ -20,14 +20,28 @@ export const fetchRecipes = createAsyncThunk(
     return response;
   }
 );
+
+export const searchRecipes = createAsyncThunk(
+  "content/searchRecipes",
+  async (search: string, thunkapi) => {
+    const data = await fetch(
+      `https://api.edamam.com/api/recipes/v2?q=${search}&app_key=${appKey}&app_id=${appId}&type=public`
+    );
+    const response = await data.json();
+    return response;
+  }
+);
+
 export interface AuthState {
   loading: boolean;
   recipes: Array<any>;
+  searchString: string,
 }
 
 const initialState = {
   loading: false,
   recipes: [],
+  searchString: "",
 } as AuthState;
 
 export const authSlice = createSlice({
@@ -37,6 +51,9 @@ export const authSlice = createSlice({
     setLoadingState(state) {
       state.loading = !state.loading;
     },
+    setSearchString(state, action) {
+      state.searchString = action.payload;
+    }
   },
   // Special reducers for hydrating the state. Special case for next-redux-wrapper
   extraReducers: (builder) => {
@@ -50,10 +67,17 @@ export const authSlice = createSlice({
       state.recipes.push(action.payload);
       state.loading = false;
     });
+    builder.addCase(searchRecipes.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(searchRecipes.fulfilled, (state, action) => {
+      state.recipes.push(action.payload);
+      state.loading = false;
+    });
   },
 });
 
-export const { setLoadingState } = authSlice.actions;
+export const { setLoadingState, setSearchString } = authSlice.actions;
 
 export const store = configureStore({
   reducer: {
