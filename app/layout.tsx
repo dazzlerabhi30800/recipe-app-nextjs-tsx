@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { inter, montserrat } from "./fonts";
-import Navbar from "@/Components/Navbar";
+import Navbar from "@/Components/Navbar.1";
 import { ReduxProvider } from '@/Store/Provider';
 
 

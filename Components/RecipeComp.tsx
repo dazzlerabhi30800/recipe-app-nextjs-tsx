@@ -19,6 +19,7 @@ export default function RecipeComp({ item }: any) {
       <h2>{label}</h2>
       <p className={styles.labels}>
         Labels:
+        {dietLabels.length < 1 && <span>No Labels</span>}
         {dietLabels.map((item: string, index: number) => (
           <span key={index}>{item}</span>
         ))}

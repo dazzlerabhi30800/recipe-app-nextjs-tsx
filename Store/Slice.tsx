@@ -10,7 +10,7 @@ const appId = process.env.NEXT_PUBLIC_APP_ID?.toString();
 const appKey = process.env.NEXT_PUBLIC_APP_KEY?.toString();
 
 export const fetchRecipes = createAsyncThunk(
-  "content/fetchRecipes",
+  "recipes/fetchRecipes",
   async () => {
     const data = await fetch(
       `https://api.edamam.com/api/recipes/v2?q=meat&app_key=${appKey}&app_id=${appId}&type=public`,
@@ -20,9 +20,13 @@ export const fetchRecipes = createAsyncThunk(
   },
 );
 
+export type fetchRecipeByString = {
+  searchString: string;
+};
+
 export const searchRecipes = createAsyncThunk(
-  "content/searchRecipes",
-  async (searchString: any) => {
+  "recipes/searchRecipes",
+  async (searchString: string, thunkAPI) => {
     const data = await fetch(
       `https://api.edamam.com/api/recipes/v2?q=${searchString}&app_key=${appKey}&app_id=${appId}&type=public`,
     );
@@ -67,9 +71,14 @@ export const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(searchRecipes.fulfilled, (state, action) => {
+      state.recipes = [];
       state.recipes.push(action.payload);
       state.loading = false;
     });
+    builder.addCase(searchRecipes.rejected, (state) => {
+      state.recipes = ["No Recipe Found"];
+      state.loading = false;
+    })
   },
 });
 
