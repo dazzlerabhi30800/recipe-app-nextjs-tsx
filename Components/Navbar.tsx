@@ -1,5 +1,5 @@
 "use client";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useRef } from "react";
 import styles from "../app/page.module.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import {
@@ -17,7 +17,7 @@ export default function Navbar() {
   const [showInput, setShowInput] = useState<boolean>(false);
 
   // function to handle form submit
-  const handleShowInput = (e: FormEvent<HTMLFormElement>) => {
+  const handleSearchRecipe = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!showInput) return;
     dispatch(searchRecipes(searchString));
@@ -38,12 +38,13 @@ export default function Navbar() {
       )}
       <form
         style={{ flex: window.innerWidth < 500 && showInput ? "1" : "0" }}
-        onSubmit={handleShowInput}
+        onSubmit={handleSearchRecipe}
         className={styles.formContainer}
       >
         {showInput && (
           <input
             onChange={(e) => dispatch(setSearchString(e.target.value))}
+            autoFocus={showInput}
             value={searchString}
             type="text"
             placeholder="enter recipe"
