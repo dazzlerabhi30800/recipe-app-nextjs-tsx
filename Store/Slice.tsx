@@ -24,9 +24,9 @@ export type fetchRecipeByString = {
   searchString: string;
 };
 
-export const searchRecipes = createAsyncThunk(
+export const searchRecipes = createAsyncThunk<any, any, any>(
   "recipes/searchRecipes",
-  async (searchString: string, thunkAPI) => {
+  async (searchString: any) => {
     const data = await fetch(
       `https://api.edamam.com/api/recipes/v2?q=${searchString}&app_key=${appKey}&app_id=${appId}&type=public`,
     );
@@ -74,11 +74,12 @@ export const authSlice = createSlice({
       state.recipes = [];
       state.recipes.push(action.payload);
       state.loading = false;
+      state.searchString = "";
     });
     builder.addCase(searchRecipes.rejected, (state) => {
       state.recipes = ["No Recipe Found"];
       state.loading = false;
-    })
+    });
   },
 });
 

@@ -1,22 +1,30 @@
 "use client";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import styles from "../app/page.module.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { searchRecipes, setSearchString, useAppSelector } from "@/Store/Slice";
+import { searchRecipes, useAppSelector, setSearchString } from "@/Store/Slice";
 import { useDispatch } from "react-redux";
 
 export default function Navbar() {
   const searchString = useAppSelector((state) => state.auth.searchString);
+  const [client, setClient] = useState<boolean>(false);
   const dispatch = useDispatch();
   const [showInput, setShowInput] = useState<boolean>(false);
+
+  // function to handle form submit
   const handleShowInput = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (showInput) {
-      dispatch(searchRecipes(searchString));
-    } else {
-      setShowInput((prev) => !prev);
-    }
+    if (!showInput) return;
+    // console.log(searchString);
+    dispatch(searchRecipes(searchString));
   };
+
+  // This is will solve the problem of window is undefined
+  useEffect(() => {
+    setClient(true);
+  }, []);
+
+  if (!client) return false;
   return (
     <nav className={styles.nav}>
       {window.innerWidth < 500 && showInput ? (
@@ -32,12 +40,17 @@ export default function Navbar() {
         {showInput && (
           <input
             onChange={(e) => dispatch(setSearchString(e.target.value))}
+            value={searchString}
             type="text"
             placeholder="enter recipe"
             id="recipe--input"
           />
         )}
-        <button className={styles.searchBtn}>
+        <button
+          type="button"
+          onClick={() => setShowInput((prev) => !prev)}
+          className={styles.searchBtn}
+        >
           <MagnifyingGlassIcon style={{ width: "30px", height: "30px" }} />
         </button>
       </form>

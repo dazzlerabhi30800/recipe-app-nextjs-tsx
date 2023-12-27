@@ -4,6 +4,7 @@
   height: var(--navbar-height);
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
   align-items: center;
 }
 
@@ -134,6 +135,9 @@
 }
 
 @media Screen and (min-width: 600px) {
+  .nav {
+    padding: 2rem;
+  }
   .recipeWrapper {
     --columns: 2;
   }
@@ -151,7 +155,7 @@
 }
 
 @media (hover: hover) {
-  .recipeComp {
+  .recipeComp, .searchBtn {
     cursor: pointer;
     transition: 0.3s linear;
   }
