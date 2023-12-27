@@ -9,35 +9,33 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 const appId = process.env.NEXT_PUBLIC_APP_ID?.toString();
 const appKey = process.env.NEXT_PUBLIC_APP_KEY?.toString();
 
-export const fetchRecipes = createAsyncThunk(
-  "recipes/fetchRecipes",
-  async () => {
-    const data = await fetch(
-      `https://api.edamam.com/api/recipes/v2?q=meat&app_key=${appKey}&app_id=${appId}&type=public`,
-    );
-    const response = await data.json();
-    return response;
-  },
-);
+export const fetchRecipes = createAsyncThunk("auth/fetchRecipes", async () => {
+  const data = await fetch(
+    `https://api.edamam.com/api/recipes/v2?q=meat&app_key=${appKey}&app_id=${appId}&type=public`
+  );
+  const response = await data.json();
+  return response;
+});
 
 export type fetchRecipeByString = {
   searchString: string;
 };
 
 export const searchRecipes = createAsyncThunk<any, any, any>(
-  "recipes/searchRecipes",
+  "auth/searchRecipes",
   async (searchString: any) => {
+    // const { searchString } = params;
     const data = await fetch(
-      `https://api.edamam.com/api/recipes/v2?q=${searchString}&app_key=${appKey}&app_id=${appId}&type=public`,
+      `https://api.edamam.com/api/recipes/v2?q=${searchString}&app_key=${appKey}&app_id=${appId}&type=public`
     );
     const response = await data.json();
     return response;
-  },
+  }
 );
 
 export interface AuthState {
   loading: boolean;
-  recipes: Array<any>;
+  recipes: any;
   searchString: string;
 }
 

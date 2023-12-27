@@ -2,20 +2,24 @@
 import { useState, FormEvent, useEffect } from "react";
 import styles from "../app/page.module.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { searchRecipes, useAppSelector, setSearchString } from "@/Store/Slice";
+import {
+  searchRecipes,
+  useAppSelector,
+  setSearchString,
+  AppDispatch,
+} from "@/Store/Slice";
 import { useDispatch } from "react-redux";
 
 export default function Navbar() {
   const searchString = useAppSelector((state) => state.auth.searchString);
   const [client, setClient] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [showInput, setShowInput] = useState<boolean>(false);
 
   // function to handle form submit
   const handleShowInput = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!showInput) return;
-    // console.log(searchString);
     dispatch(searchRecipes(searchString));
   };
 
