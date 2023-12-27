@@ -6,15 +6,14 @@ import { searchRecipes, setSearchString, useAppSelector } from "@/Store/Slice";
 import { useDispatch } from "react-redux";
 
 export default function Navbar() {
-  const searchString = useAppSelector(state => state.auth.searchString);
+  const searchString = useAppSelector((state) => state.auth.searchString);
   const dispatch = useDispatch();
   const [showInput, setShowInput] = useState<boolean>(false);
   const handleShowInput = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (showInput) {
       dispatch(searchRecipes(searchString));
-    }
-    else {
+    } else {
       setShowInput((prev) => !prev);
     }
   };
@@ -31,7 +30,12 @@ export default function Navbar() {
         className={styles.formContainer}
       >
         {showInput && (
-          <input onChange={(e) => dispatch(setSearchString(e.target.value))} type="text" placeholder="enter recipe" id="recipe--input" />
+          <input
+            onChange={(e) => dispatch(setSearchString(e.target.value))}
+            type="text"
+            placeholder="enter recipe"
+            id="recipe--input"
+          />
         )}
         <button className={styles.searchBtn}>
           <MagnifyingGlassIcon style={{ width: "30px", height: "30px" }} />

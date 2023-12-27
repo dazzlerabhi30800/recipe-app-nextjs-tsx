@@ -3,7 +3,6 @@ import "./globals.css";
 import { inter, montserrat } from "./fonts";
 import Navbar from "@/Components/Navbar";
 import { ReduxProvider } from '@/Store/Provider';
-// import { wrapper } from "@/Store/Slice";
 
 
 export const metadata: Metadata = {
@@ -24,5 +23,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-// export default wrapper.withRedux(RootLayout);
