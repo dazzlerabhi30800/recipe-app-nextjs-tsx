@@ -1,5 +1,5 @@
 "use client";
-import { useState, FormEvent, useEffect, useRef } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import styles from "../app/page.module.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import {
@@ -9,18 +9,21 @@ import {
   AppDispatch,
 } from "@/Store/Slice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const searchString = useAppSelector((state) => state.auth.searchString);
   const [client, setClient] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
   const [showInput, setShowInput] = useState<boolean>(false);
 
   // function to handle form submit
   const handleSearchRecipe = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!showInput) return;
-    dispatch(searchRecipes(searchString));
+    router.push(`/recipes/${searchString}`);
+    // dispatch(searchRecipes(searchString));
   };
 
   // This is will solve the problem of window is undefined
