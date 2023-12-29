@@ -14,7 +14,6 @@ export default async function Recipe({ params: { id } }: recipeParams) {
   const {
     recipe: { label },
   } = fetchedRecipe;
-  // console.log(label);
   return (
     <div className={styles.main}>
       <Suspense fallback={<Loading />}>

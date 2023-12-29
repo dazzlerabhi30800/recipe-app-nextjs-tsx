@@ -2,12 +2,7 @@
 import { useState, FormEvent, useEffect } from "react";
 import styles from "../app/page.module.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import {
-  searchRecipes,
-  useAppSelector,
-  setSearchString,
-  AppDispatch,
-} from "@/Store/Slice";
+import { useAppSelector, setSearchString, AppDispatch } from "@/Store/Slice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 
@@ -23,7 +18,6 @@ export default function Navbar() {
     e.preventDefault();
     if (!showInput) return;
     router.push(`/recipes/${searchString}`);
-    // dispatch(searchRecipes(searchString));
   };
 
   // This is will solve the problem of window is undefined
