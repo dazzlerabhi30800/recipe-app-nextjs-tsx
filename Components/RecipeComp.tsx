@@ -1,10 +1,18 @@
 import styles from "@/app/page.module.css";
+import { fetchId } from "@/public/Utils/FetchRecipe";
 import Image from "next/image";
 
 export default function RecipeComp({ item }: any) {
   const {
     recipe: { images, label, dietLabels, calories },
   } = item;
+  const {
+    _links: {
+      self: { href },
+    },
+  } = item;
+  const fetchedId = fetchId(href);
+  console.log(fetchedId);
   return (
     <div className={styles.recipeComp}>
       <Image
