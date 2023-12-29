@@ -1,5 +1,8 @@
 import styles from "@/app/page.module.css";
+// import styles2 from "@/app/recipe.module.css";
 import { fetchRecipe } from "@/public/Utils/FetchRecipe";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 type recipeParams = {
   params: {
@@ -7,11 +10,17 @@ type recipeParams = {
   };
 };
 export default async function Recipe({ params: { id } }: recipeParams) {
-  const recipe = await fetchRecipe(id);
-  console.log(recipe);
+  const fetchedRecipe: any = await fetchRecipe(id);
+  const {
+    recipe: { label },
+  } = fetchedRecipe;
+  // console.log(label);
   return (
     <div className={styles.main}>
-      <h1>Recipe {id}</h1>
+      <Suspense fallback={<Loading />}>
+        <h1>Recipe {id}</h1>
+        <p>Name: {label}</p>
+      </Suspense>
     </div>
   );
 }

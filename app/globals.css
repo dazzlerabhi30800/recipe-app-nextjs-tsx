@@ -11,6 +11,8 @@
 body {
   background: linear-gradient(to left, #232323, #232222);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -23,7 +25,11 @@ a {
   display: inline-block;
   position: relative;
   width: 80px;
+  align-self: center;
   height: 80px;
+}
+.centered {
+  margin: 50px auto;
 }
 
 .lds-hourglass:after {
