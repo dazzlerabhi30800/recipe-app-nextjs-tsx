@@ -92,6 +92,7 @@
   text-align: center;
   min-width: 300px;
   flex-direction: column;
+  color: #fff;
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
@@ -116,7 +117,7 @@
   justify-content: center;
 }
 .labels span {
-  font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
   border-bottom: 1px dotted white;
 }
 

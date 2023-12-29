@@ -9,3 +9,12 @@ export function fetchId(url: string) {
   const id = rawId?.replace(replaceRegex, "");
   return id;
 }
+
+export async function fetchRecipe(id: string) {
+  if(!id) return;
+  const url = await fetch(
+    `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${process.env.NEXT_PUBLIC_APP_ID?.toString()}&app_key=${process.env.NEXT_PUBLIC_APP_KEY?.toString()}`,
+  );
+  const response = await url.json();
+  return response;
+}
