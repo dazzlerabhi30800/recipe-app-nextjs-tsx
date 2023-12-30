@@ -11,9 +11,9 @@ export function fetchId(url: string) {
 }
 
 export async function fetchRecipe(id: string) {
-  if(!id) return;
+  if (!id) return;
   const url = await fetch(
-    `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${process.env.NEXT_PUBLIC_APP_ID?.toString()}&app_key=${process.env.NEXT_PUBLIC_APP_KEY?.toString()}`,
+    `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${process.env.NEXT_PUBLIC_APP_ID?.toString()}&app_key=${process.env.NEXT_PUBLIC_APP_KEY?.toString()}`
   );
   const response = await url.json();
   return response;
@@ -27,4 +27,15 @@ export async function fetchRecipe(id: string) {
   //     }
   //   }, 3000)
   // })
+}
+
+export async function fetchRecipeUri(uri: string) {
+  if (!uri) return;
+  const encoded = encodeURIComponent(uri);
+  const data = await fetch(
+    `https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=${encoded}&app_id=e4ba6739&app_key=ef5add9c1af6afdbd7191fd1ff8bbd6d`
+  );
+  const response = await data.json();
+  if (!response) return;
+  return response?.hits[0]?.recipe?.image;
 }

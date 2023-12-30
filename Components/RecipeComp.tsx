@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function RecipeComp({ item }: any) {
   const {
-    recipe: { images, label, dietLabels, calories },
+    recipe: { images, label, dietLabels, calories, uri },
   } = item;
   const {
     _links: {
@@ -13,6 +13,7 @@ export default function RecipeComp({ item }: any) {
     },
   } = item;
   const fetchedId = fetchId(href);
+  // console.log(uri);
   return (
     <Link href={`/recipe/${fetchedId}`}>
       <div className={styles.recipeComp}>
