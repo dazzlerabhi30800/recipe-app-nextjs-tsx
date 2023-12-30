@@ -8,7 +8,6 @@ export default function RecipeImg({
   uri: string;
   label: string;
 }) {
-  console.log(uri);
   return (
     <Image
       className={styles2.recipeImg}
