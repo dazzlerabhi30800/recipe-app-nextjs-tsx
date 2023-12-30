@@ -1,4 +1,3 @@
-import { fetchRecipeUri } from "@/public/Utils/FetchRecipe";
 import Image from "next/image";
 
 export default function RecipeImg({
