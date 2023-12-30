@@ -6,6 +6,7 @@ import Loading from "./loading";
 import RecipeInfo from "@/Components/Recipe/RecipeInfo";
 import RecipeImg from "@/Components/Recipe/RecipeImg";
 import { searchRecipe } from "@/type";
+import IngredientList from "@/Components/Recipe/IngredientList";
 
 type recipeParams = {
   params: {
@@ -18,13 +19,11 @@ export default async function Recipe({ params: { id } }: recipeParams) {
   return (
     <main className={styles.main}>
       <Suspense fallback={<Loading />}>
-        {/* <h1 className={styles2.newHeading}> */}
-        {/*   Recipe: <span style={{ fontSize: "1.3rem" }}>{id}</span> */}
-        {/* </h1> */}
         <div className={styles2.searchRecipeWrapper}>
           <RecipeImg label={recipe.label} uri={recipe.image} />
           <RecipeInfo recipe={recipe} />
         </div>
+        <IngredientList ingredients={recipe.ingredientLines}  />
       </Suspense>
     </main>
   );

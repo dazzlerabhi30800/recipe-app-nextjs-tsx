@@ -61,6 +61,34 @@ a {
   }
 }
 
+
+/* Ingredient Styling */
+.ingredient--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 90%;
+  margin: 0 auto;
+  text-align: left;
+  margin-top: 5rem;
+  padding: 1rem 0;
+  font-family: var(--font-inter);
+}
+.ingredient--title {
+  font-size: clamp(1.2rem, 2vw + 8px, 2.4rem);
+  font-family: var(--font-montserrat);
+}
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  padding: 10px 1rem;
+  gap: 1.5rem;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+}
+
+
+
 @media (hover: hover) {
   a:hover {
     color: #ccc;
