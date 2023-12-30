@@ -29,7 +29,7 @@ export type recipe = {
   cautions: Array<any>;
   ingredientLines: Array<string>;
   ingredients: Array<ingredients>;
-  colories: number;
+  calories: number;
   totalCO2Emissions: number;
   co2EmissionsClass: string;
   totalWeight: number;
@@ -45,19 +45,19 @@ export type recipe = {
   tags: Array<string>;
 };
 
-type images = {
+export type images = {
   THUMBNAIL: thumbnailImg;
   SMALL: thumbnailImg;
   REGULAR: thumbnailImg;
 };
 
-type thumbnailImg = {
+export type thumbnailImg = {
   url: string;
   width: number;
   height: number;
 };
 
-type ingredients = {
+export type ingredients = {
   text: string;
   quantity: 1;
   measure: string;
