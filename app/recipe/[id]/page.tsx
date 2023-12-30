@@ -1,10 +1,11 @@
 import styles from "@/app/page.module.css";
-// import styles2 from "@/app/recipe.module.css";
-import { fetchRecipe, fetchRecipeUri } from "@/public/Utils/FetchRecipe";
+import styles2 from "@/app/recipe.module.css";
+import { fetchRecipe } from "@/public/Utils/FetchRecipe";
 import { Suspense } from "react";
 import Loading from "./loading";
 import RecipeInfo from "@/Components/Recipe/RecipeInfo";
 import RecipeImg from "@/Components/Recipe/RecipeImg";
+import { searchRecipe } from "@/type";
 
 type recipeParams = {
   params: {
@@ -12,19 +13,16 @@ type recipeParams = {
   };
 };
 export default async function Recipe({ params: { id } }: recipeParams) {
-  const fetchedRecipe: any = await fetchRecipe(id);
-  const {
-    recipe: { label, uri },
-  } = fetchedRecipe;
-  const recipeImg: any = await fetchRecipeUri(uri);
+  const fetchedRecipe: searchRecipe = await fetchRecipe(id);
+  const { recipe } = fetchedRecipe.hits[0];
   return (
     <main className={styles.main}>
       <Suspense fallback={<Loading />}>
-        <h1>
+        <h1 className={styles2.newHeading}>
           Recipe: <span style={{ fontSize: "1.3rem" }}>{id}</span>
         </h1>
-        <RecipeImg alt={label} uri={recipeImg} />
-        <RecipeInfo info={fetchedRecipe} />
+        <RecipeImg label={recipe.label} uri={recipe.image} />
+        <RecipeInfo recipe={recipe} />
       </Suspense>
     </main>
   );

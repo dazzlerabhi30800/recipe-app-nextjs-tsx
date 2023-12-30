@@ -1,14 +1,21 @@
-export interface searchRecipe {
-  recipe: recipe;
-  _links: {
-    self: {
-      title: string;
-      href: string;
+interface searchRecipe {
+  from: number;
+  to: number;
+  count: number;
+  hits: [
+    {
+      recipe: recipe;
+      _links?: {
+        self: {
+          title: string;
+          href: string;
+        };
+      };
     }
-  }
+  ];
 }
 
-type recipe = {
+export type recipe = {
   uri: string;
   label: string;
   image: string;
@@ -35,7 +42,7 @@ type recipe = {
   digest: Array<any>;
   instructionLines: Array<string>;
   summary: string;
-  tags: Array<string>
+  tags: Array<string>;
 };
 
 type images = {
