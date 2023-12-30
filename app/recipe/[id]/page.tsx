@@ -3,6 +3,7 @@ import styles from "@/app/page.module.css";
 import { fetchRecipe } from "@/public/Utils/FetchRecipe";
 import { Suspense } from "react";
 import Loading from "./loading";
+import RecipeInfo from "@/Components/Recipe/RecipeInfo";
 
 type recipeParams = {
   params: {
@@ -15,11 +16,11 @@ export default async function Recipe({ params: { id } }: recipeParams) {
     recipe: { label },
   } = fetchedRecipe;
   return (
-    <div className={styles.main}>
+    <main className={styles.main}>
       <Suspense fallback={<Loading />}>
-        <h1>Recipe {id}</h1>
-        <p>Name: {label}</p>
+        <h1>Recipe: {id} {label}</h1>
+        <RecipeInfo info={fetchedRecipe} />
       </Suspense>
-    </div>
+    </main>
   );
 }

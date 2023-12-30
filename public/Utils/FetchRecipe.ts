@@ -16,14 +16,15 @@ export async function fetchRecipe(id: string) {
     `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${process.env.NEXT_PUBLIC_APP_ID?.toString()}&app_key=${process.env.NEXT_PUBLIC_APP_KEY?.toString()}`,
   );
   const response = await url.json();
-  return new Promise((resolve: any, reject) => {
-    setTimeout(() => {
-      if(response) {
-        resolve(response);
-      }
-      else {
-        reject('no recipe found');
-      }
-    }, 3000)
-  })
+  return response;
+  // return new Promise((resolve: any, reject) => {
+  //   setTimeout(() => {
+  //     if(response) {
+  //       resolve(response);
+  //     }
+  //     else {
+  //       reject('no recipe found');
+  //     }
+  //   }, 3000)
+  // })
 }
