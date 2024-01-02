@@ -71,7 +71,14 @@
   color: #000;
   margin: 1rem 0;
   border-radius: 5px;
+  font-family: var(--font-inter);
   border: 1px solid limegreen;
+}
+
+.nextButton {
+  background: #96f65a;
+  font-weight: 500;
+  border: none;
 }
 
 /* Recipe Wrapper Styling */
@@ -164,5 +171,12 @@
     position: relative;
     scale: 1.03;
     z-index: 444;
+  }
+  .nextButton {
+    cursor: pointer;
+    transition: 0.3s linear;
+  }
+  .nextButton:hover {
+    background: #6af199;
   }
 }
