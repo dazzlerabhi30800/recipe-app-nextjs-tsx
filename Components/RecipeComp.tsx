@@ -3,9 +3,9 @@ import { fetchId } from "@/public/Utils/FetchRecipe";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function RecipeComp({ item }: any) {
+export default function RecipeComp({ item }: { item: any }) {
   const {
-    recipe: { images, label, dietLabels, calories, uri },
+    recipe: { images, label, dietLabels, calories, image },
   } = item;
   const {
     _links: {
@@ -13,7 +13,6 @@ export default function RecipeComp({ item }: any) {
     },
   } = item;
   const fetchedId = fetchId(href);
-  // console.log(uri);
   return (
     <Link href={`/recipe/${fetchedId}`}>
       <div className={styles.recipeComp}>
@@ -23,7 +22,12 @@ export default function RecipeComp({ item }: any) {
           priority={true}
           width={100}
           height={100}
-          src={images?.LARGE?.url || images?.REGULAR?.url}
+          src={
+            images?.LARGE?.url ||
+            images?.REGULAR?.url ||
+            image ||
+            images?.SMALL?.url
+          }
           alt={label}
         />
         <h2>{label}</h2>

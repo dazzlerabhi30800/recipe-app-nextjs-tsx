@@ -60,7 +60,7 @@
 
 .heading {
   font-family: var(--font-montserrat);
-  font-size: clamp(1.5rem, 2vw + 8px, 2.8rem);
+  font-size: clamp(1.5rem, 2vw + 8px, 2.1rem);
 }
 
 .button {
@@ -110,7 +110,7 @@
 }
 
 .recipeComp h2 {
-  font-size: clamp(1.3rem, 1.5vw, 1.6rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.33rem);
 }
 
 .recipeComp p {
