@@ -46,6 +46,7 @@ export interface AuthState {
   recipes: any;
   searchString: string;
   nextPageLink: string | null;
+  loadMore: boolean;
 }
 
 const initialState = {
@@ -53,6 +54,7 @@ const initialState = {
   recipes: [],
   searchString: "",
   nextPageLink: null,
+  loadMore: false,
 } as AuthState;
 
 export const authSlice = createSlice({
@@ -80,12 +82,12 @@ export const authSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(nextPageRecipes.pending, (state) => {
-      state.loading = true;
+      state.loadMore = true;
     });
     builder.addCase(nextPageRecipes.fulfilled, (state, action) => {
       state.recipes.push(action.payload);
       state.nextPageLink = action.payload._links.next.href;
-      state.loading = false;
+      state.loadMore= false;
     });
     builder.addCase(searchRecipes.pending, (state) => {
       state.loading = true;

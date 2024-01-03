@@ -12,9 +12,9 @@ import RecipeComp from "./RecipeComp";
 import Loading from "@/app/loading";
 
 export default function Recipes() {
-  const loading = useAppSelector((state) => state.auth.loading);
-  const recipes = useAppSelector((state) => state.auth.recipes);
-  const nextPageLink = useAppSelector((state) => state.auth.nextPageLink);
+  const { loadMore, loading, recipes, nextPageLink } = useAppSelector(
+    (state) => state.auth,
+  );
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     if (recipes.length >= 1) return;
@@ -29,12 +29,16 @@ export default function Recipes() {
           <RecipeComp key={index} item={item} />
         ))}
       </div>
-      <button
-        onClick={() => dispatch(nextPageRecipes(nextPageLink))}
-        className={`${styles.button} ${styles.nextButton}`}
-      >
-        Load More Recipes
-      </button>
+      {loadMore ? (
+        <Loading />
+      ) : (
+        <button
+          onClick={() => dispatch(nextPageRecipes(nextPageLink))}
+          className={`${styles.button} ${styles.nextButton}`}
+        >
+          Load More Recipes
+        </button>
+      )}
     </>
   );
 }
