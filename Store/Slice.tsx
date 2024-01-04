@@ -87,7 +87,7 @@ export const authSlice = createSlice({
     builder.addCase(nextPageRecipes.fulfilled, (state, action) => {
       state.recipes.push(action.payload);
       state.nextPageLink = action.payload._links.next.href;
-      state.loadMore= false;
+      state.loadMore = false;
     });
     builder.addCase(searchRecipes.pending, (state) => {
       state.loading = true;
