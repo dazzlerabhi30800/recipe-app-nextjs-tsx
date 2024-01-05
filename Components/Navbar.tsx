@@ -31,7 +31,7 @@ export default function Navbar() {
       {window.innerWidth < 500 && showInput ? (
         ""
       ) : (
-        <h1 className={styles.logo}>goodgut</h1>
+        <h1 onClick={() => router.push("/")} className={styles.logo}>goodgut</h1>
       )}
       <form
         style={{ flex: window.innerWidth < 500 && showInput ? "1" : "0" }}

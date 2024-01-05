@@ -162,6 +162,9 @@
 }
 
 @media (hover: hover) {
+  .logo {
+    cursor: pointer;
+  }
   .recipeComp,
   .searchBtn {
     cursor: pointer;
