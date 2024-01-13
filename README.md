@@ -17,7 +17,7 @@
 
 ### View the Live Site Here <ins>_[Live Site](https://recipe-app-nextjs-tsx.vercel.app/)_</ins>
 
-### React Image File Resizer
+### Recipe App in Next.JS 
 
 ### Home Page
 
